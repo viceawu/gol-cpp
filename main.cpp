@@ -3,7 +3,13 @@
 
 #include "lib/Cell.h"
 
-void step(std::vector<Cell>& , const int& height, const int& length) {
+int get_index(const int& i, const int& j, const int& height, const int& length) {
+    int corrected_i = ((i % height) + height) % height;
+    int corrected_j = ((j % length) + length) % length;
+    return i * length + j;
+}
+
+void step(std::vector<Cell>& scene, const int& height, const int& length) {
 
 }
 
@@ -14,11 +20,11 @@ int main(int, char**){
     std::vector<Cell> scene(height * length);
 
     // testing code, will remove later...
-    scene[1 * length + 2] = is_alive;
-    scene[2 * length + 3] = is_alive;
-    scene[3 * length + 1] = is_alive;
-    scene[3 * length + 2] = is_alive;
-    scene[3 * length + 3] = is_alive;
+    scene[get_index(1, 2, height, length)] = is_alive;
+    scene[get_index(2, 3, height, length)] = is_alive;
+    scene[get_index(3, 1, height, length)] = is_alive;
+    scene[get_index(3, 2, height, length)] = is_alive;
+    scene[get_index(3, 3, height, length)] = is_alive;
 
     for (int i = 0; i < height; ++i) {
         for (int j = 0; j < length; ++j) {
