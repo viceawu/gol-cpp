@@ -1,26 +1,7 @@
 #include <iostream>
 #include <vector>
 
-// TODO: move this to different file
-enum Cell {
-    is_dead = 0,
-    is_alive = 1
-};
-
-std::ostream& operator<<(std::ostream& os, const Cell& cell) {
-    switch(cell) {
-        case is_dead:
-            os << "░░";
-            break;
-        case is_alive:
-            os << "▓▓";
-            break;
-        default:
-            os.setstate(std::ios_base::failbit);
-    }
-
-    return os;
-}
+#include "lib/Cell.h"
 
 void step(std::vector<Cell>& , const int& height, const int& length) {
 
