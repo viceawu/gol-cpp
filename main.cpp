@@ -36,8 +36,20 @@ int main(int, char**){
     if (images[0].pixels != NULL) glfwSetWindowIcon(window, 1, images);
 
     while (!glfwWindowShouldClose(window)) {
-        glClearColor(1, 0.5f, 1, 1);
-        glClear(GL_COLOR_BUFFER_BIT);
+        glClearColor(0.f, 0.f, 0.f, 0.f);
+
+        glClear( GL_COLOR_BUFFER_BIT| GL_DEPTH_BUFFER_BIT);
+    
+        glPushMatrix();
+        glTranslatef(1.f, 0.f, 0.f);
+        glBegin(GL_QUADS);
+        glColor3f(1.f, 1.f, 1.f);
+        glVertex3f(-0.2f, -0.2f, 0.f);
+        glVertex3f(0.2f, -0.2f, 0.f);
+        glVertex3f(0.2f, 0.2f, 0.f);
+        glVertex3f(-0.2f, 0.2f, 0.f);
+        glEnd();
+        glPopMatrix();
 
         glfwSwapBuffers(window);
         glfwPollEvents();
