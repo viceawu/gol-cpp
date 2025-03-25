@@ -21,5 +21,8 @@ add_executable("${CMAKE_PROJECT_NAME}" main.cpp)
 target_sources("${CMAKE_PROJECT_NAME}" PRIVATE lib/Cell.cpp)
 
 target_include_directories(${PROJECT_NAME} PRIVATE ext/glad/include)
+# target_include_directories(${PROJECT_NAME} PRIVATE ext/stb/include)
+
+configure_file(${CMAKE_SOURCE_DIR}/logo.png ${CMAKE_CURRENT_BINARY_DIR}/logo.png COPYONLY)
 
 target_link_libraries("${CMAKE_PROJECT_NAME}" PRIVATE glfw glad ${CMAKE_DL_LIBS})
