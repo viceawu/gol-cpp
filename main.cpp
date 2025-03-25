@@ -24,13 +24,21 @@ int main(int, char**){
         return 2;
     }
 
+    glfwMakeContextCurrent(window);
+
+    if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
+        glfwTerminate();
+        return 3;
+    }
+
     GLFWimage images[1]; 
     images[0].pixels = stbi_load("logo.png", &images[0].width, &images[0].height, 0, 4); //rgba channels
     if (images[0].pixels != NULL) glfwSetWindowIcon(window, 1, images);
 
     while (!glfwWindowShouldClose(window)) {
-        // render(window);
-    
+        glClearColor(1, 0.5f, 1, 1);
+        glClear(GL_COLOR_BUFFER_BIT);
+
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
