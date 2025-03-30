@@ -1,4 +1,4 @@
-# gof-cpp
+# gol-cpp
 My implementation of "game of life" in CPP.
 
 Test commit...
