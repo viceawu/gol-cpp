@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.10.0)
-project(gof-cpp VERSION 0.1.0 LANGUAGES C CXX)
+project(gol-cpp VERSION 0.1.0 LANGUAGES C CXX)
 
 set(CMAKE_CXX_STANDARD 20)
 
@@ -19,3 +19,5 @@ add_executable("${CMAKE_PROJECT_NAME}" main.cpp)
 target_sources("${CMAKE_PROJECT_NAME}" PRIVATE lib/Cell.cpp)
 
 target_link_libraries("${CMAKE_PROJECT_NAME}" PRIVATE SFML::Graphics)
+
+configure_file(${CMAKE_SOURCE_DIR}/font.ttf ${CMAKE_CURRENT_BINARY_DIR}/font.ttf COPYONLY)
