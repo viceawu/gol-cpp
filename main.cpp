@@ -20,7 +20,8 @@ int main() {
     std::cout << best_mode.size.x << "\n";
 
     auto window = sf::RenderWindow(best_mode, "Game of Life");
-    window.setFramerateLimit(144);
+    uint frame_limit = 2;
+    window.setFramerateLimit(frame_limit);
 
     // init other graphics stuff
     sf::Clock clock;
@@ -37,6 +38,12 @@ int main() {
                 sf::FloatRect visibleArea({0.f, 0.f}, sf::Vector2f(resized->size));
                 window.setView(sf::View(visibleArea));
             }
+
+            if (const auto* wheel = event -> getIf<sf::Event::MouseWheelScrolled>()) {
+                if (frame_limit + wheel -> delta > 0) frame_limit += (uint)wheel -> delta;
+                std::cout << frame_limit << "\n";
+                window.setFramerateLimit(frame_limit);
+            }
         }
 
         window.clear(sf::Color::White);
@@ -46,11 +53,10 @@ int main() {
         sf::Vector2<float> offset = view_size + half_view_size; // center
 
         sf::RectangleShape rectangle;
-        rectangle.setSize({100, 100});
+        rectangle.setSize({12, 12});
         rectangle.setOutlineColor(sf::Color::Black);
         rectangle.setOutlineThickness(2);
         rectangle.setPosition(half_view_size);
-
 
         sf::Text text(font, std::to_string(clock.getElapsedTime().asSeconds()));
         text.setCharacterSize(20);
